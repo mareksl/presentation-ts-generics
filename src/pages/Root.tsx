@@ -1,30 +1,37 @@
 import React, { useEffect } from "react";
 import Reveal from "reveal.js";
+import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
 import "./Root.scss";
 import "reveal.js/dist/reveal.css";
-import "reveal.js/dist/theme/black.css";
-import Title from "./sections/Title";
+import "reveal.js/dist/theme/blood.css";
+import Section from "../components/Section";
 
-import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
+import Title from "./sections/Title";
+import Functions from "./sections/Functions/Functions";
+import Functions2 from "./sections/Functions/Functions_2";
+import Functions3 from "./sections/Functions/Functions_3";
+import Types from "./sections/Types/Types";
 
 const Root: React.FC = () => {
   useEffect(() => {
     Reveal.initialize({
       plugins: [Markdown],
+      disableLayout: true,
+      hash: true,
     });
   }, []);
 
-  const sections = [Title];
+  const sections = [Title, Functions, Functions2, Functions3, Types];
 
   return (
     <div className="wrapper">
       <div className="reveal">
         <div className="slides">
-          {sections.map((Section, i)=> 
-              <section key={i.toString()}>
-                  <Section/>
-              </section>
-          )}
+          {sections.map((Content, i) => (
+            <Section key={i.toString()}>
+              <Content />
+            </Section>
+          ))}
         </div>
       </div>
     </div>

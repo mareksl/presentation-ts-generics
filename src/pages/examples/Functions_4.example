@@ -1,0 +1,13 @@
+interface Metadata {
+  createdAt: string;
+  createdBy: string;
+}
+
+function addMetaDataGeneric<T>(object: T): Metadata & T {
+  return { ...object, createdAt: "2021-08-01", createdBy: "Jane Doe" };
+}
+
+const postWithMetadataGeneric = addMetaDataGeneric(post);
+
+postWithMetadataGeneric.content;
+postWithMetadataGeneric.createdAt;

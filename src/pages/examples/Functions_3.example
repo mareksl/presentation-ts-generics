@@ -1,0 +1,51 @@
+const post = {
+  title: "My First Post",
+  content: "Lorem ipsum dolor sit amet!",
+};
+
+function addMetaData(object: any) {
+  return { ...object, createdAt: "2021-08-01", createdBy: "Jane Doe" };
+}
+
+const postWithMetadata = addMetaData(post);
+
+// =======================================
+
+function addMetaData_1(object: unknown) {
+  return { ...object, createdAt: "2021-08-01", createdBy: "Jane Doe" };
+}
+
+// =======================================
+
+interface Post {
+  title: string;
+  content: string;
+}
+
+function addMetaData_2(object: Post) {
+  return { ...object, createdAt: "2021-08-01", createdBy: "Jane Doe" };
+}
+
+const postWithMetadata_1 = addMetaData_2(post);
+
+// =======================================
+
+const category = {
+  title: "Cooking",
+  posts: 2,
+};
+
+const categoryWithMetadata = addMetaData_2(category);
+
+// =======================================
+
+interface Category {
+  title: string;
+  posts: number;
+}
+
+function addMetaData_3(object: Post | Category) {
+  return { ...object, createdAt: "2021-08-01", createdBy: "Jane Doe" };
+}
+
+const categoryWithMetadata_1 = addMetaData_3(category);

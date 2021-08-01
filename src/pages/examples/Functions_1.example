@@ -1,0 +1,29 @@
+const inputString = "Hello World! 👋";
+const inputNumber = 10;
+
+// =======================================
+
+function identity_1(input: string): string {
+  return input;
+}
+
+const output_1 = identity_1(inputString);
+const output_2 = identity_1(inputNumber);
+
+// =======================================
+
+function identity_2(input: any): any {
+  return input;
+}
+
+const output_3 = identity_2(inputString);
+const output_4 = identity_2(inputNumber);
+
+// =======================================
+
+function identity_3(input: unknown): unknown {
+  return input;
+}
+
+const output_5 = identity_3(inputString);
+const output_6 = identity_3(inputNumber);
