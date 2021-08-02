@@ -10,6 +10,7 @@ import Title from "./sections/Title";
 import Functions from "./sections/Functions/Functions";
 import Functions2 from "./sections/Functions/Functions_2";
 import Functions3 from "./sections/Functions/Functions_3";
+import Functions4 from "./sections/Functions/Functions_4";
 import Types from "./sections/Types/Types";
 
 const Root: React.FC = () => {
@@ -21,7 +22,14 @@ const Root: React.FC = () => {
     });
   }, []);
 
-  const sections = [Title, Functions, Functions2, Functions3, Types];
+  const sections = [
+    Title,
+    Functions,
+    Functions2,
+    Functions3,
+    Functions4,
+    Types,
+  ];
 
   return (
     <div className="wrapper">
