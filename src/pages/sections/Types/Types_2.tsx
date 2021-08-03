@@ -3,20 +3,17 @@ import Section from "../../../components/Section";
 import Editor from "../../../components/Editor";
 import files from "../../examples";
 
-const Types: React.FC = () => {
+const Types2: React.FC = () => {
   return (
     <>
       <Section>
-        <h2>Typy i interfejsy</h2>
+        <Editor file={files.types3} hasPreview />
       </Section>
       <Section>
-        <Editor file={files.types1} hasPreview />
-      </Section>
-      <Section>
-        <Editor file={files.types2} hasPreview />
+        <Editor file={files.types4} hasPreview />
       </Section>
     </>
   );
 };
 
-export default Types;
+export default Types2;

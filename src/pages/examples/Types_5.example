@@ -1,0 +1,36 @@
+interface Book {
+  title: string;
+  author: {
+    firstName: string;
+    lastName: string;
+  };
+  pages: number;
+}
+
+const book: Partial<Book> = {
+  title: "Lord of the Rings",
+};
+
+const partialBookWrong: Partial<Book> = {
+  title: "Harry Potter",
+  author: {
+    firstName: "Joanne",
+  },
+};
+
+// =======================================
+
+type RecursivePartial<T> = {
+  [P in keyof T]?: T[P] extends object ? RecursivePartial<T[P]> : T[P];
+};
+
+const recursivePartialBook: RecursivePartial<Book> = {
+  title: "Harry Potter",
+  author: {
+    firstName: "Joanne",
+  },
+};
+
+// =======================================
+
+export default undefined;

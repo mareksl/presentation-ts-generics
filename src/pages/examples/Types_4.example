@@ -1,0 +1,36 @@
+interface Dictionary {
+  polish: string;
+  english: string;
+  german: string;
+}
+
+const dictionary: Dictionary = {
+  polish: "cześć",
+  english: "hello",
+  german: "grüß Gott",
+};
+
+function getDictionaryValue(
+  dictionary: Dictionary,
+  language: keyof Dictionary
+) {
+  return dictionary[language];
+}
+
+const arabicHello = getDictionaryValue(dictionary, "arabic");
+
+// =======================================
+
+function genericGetValue<T>(object: T, key: keyof T) {
+  return object[key];
+}
+
+const germanHello = genericGetValue(dictionary, "german");
+
+console.log(germanHello);
+
+const wrongAgain = genericGetValue(dictionary, "turkish");
+
+// =======================================
+
+export default undefined;

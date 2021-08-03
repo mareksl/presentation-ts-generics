@@ -8,8 +8,14 @@ const attachments = {
   size: 2048,
 };
 
-function extend<T, U>(obj1: T, obj2: U): T & U {
+function attach<T, U>(obj1: T, obj2: U): T & U {
   return { ...obj1, ...obj2 };
 }
 
-const emailWithAttachments = extend(email, attachments);
+const emailWithAttachments = attach(email, attachments);
+
+console.log(emailWithAttachments);
+
+// =======================================
+
+export default undefined;

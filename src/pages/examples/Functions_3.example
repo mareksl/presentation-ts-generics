@@ -8,6 +8,7 @@ function addMetaData(object: any) {
 }
 
 const postWithMetadata = addMetaData(post);
+console.log(postWithMetadata);
 
 // =======================================
 
@@ -49,3 +50,7 @@ function addMetaData_3(object: Post | Category) {
 }
 
 const categoryWithMetadata_1 = addMetaData_3(category);
+
+// =======================================
+
+export default undefined;

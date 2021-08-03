@@ -1,0 +1,39 @@
+type SnakeToCamelCase<S> = S extends string
+  ? S extends `${infer T}_${infer U}`
+    ? `${T}${Capitalize<SnakeToCamelCase<U>>}`
+    : S
+  : S;
+
+const snakeToCamelCase = <T extends string>(str: T): SnakeToCamelCase<T> =>
+  str
+    .toLowerCase()
+    .replace(/_(\w)/g, (letter) =>
+      letter[1].toUpperCase()
+    ) as SnakeToCamelCase<T>;
+
+// =======================================
+
+type SnakeToCamelCaseObject<T> = {
+  [K in keyof T as SnakeToCamelCase<K>]: T[K];
+};
+
+const snakeCaseToCamelCaseObject = <T>(source: T): SnakeToCamelCaseObject<T> =>
+  Object.entries(source).reduce((r, [key, value]) => {
+    const k = key as Extract<keyof T, string>;
+    Object.assign(r, { [snakeToCamelCase(k)]: value });
+    return r;
+  }, {} as SnakeToCamelCaseObject<T>);
+
+// =======================================
+
+const dataFromPythonBackend = {
+  stupid_data: "why use 🐍 case?",
+  some_file_size: 342,
+};
+
+const normalData = snakeCaseToCamelCaseObject(dataFromPythonBackend);
+
+console.log(normalData.stupid_data);
+
+console.log(normalData.stupidData);
+console.log(normalData.someFileSize);

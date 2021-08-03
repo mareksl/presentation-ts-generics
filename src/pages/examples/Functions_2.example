@@ -1,18 +1,29 @@
-function genericIdentity<Type>(input: Type): Type {
+const inputString = "Hello World! 👋";
+const inputNumber = 10;
+
+// =======================================
+
+function identity<Type>(input: Type): Type {
   return input;
 }
 
-const genericOutput_1 = genericIdentity<string>(inputString);
-const genericOutput_2 = genericIdentity<number>(inputNumber);
+const genericOutput_1 = identity<string>(inputString);
+const genericOutput_2 = identity<number>(inputNumber);
 
 // =======================================
 
-const genericOutput_3 = genericIdentity(inputString);
-const genericOutput_4 = genericIdentity(inputNumber);
+const genericOutput_3 = identity(inputString);
+const genericOutput_4 = identity(inputNumber);
 
 // =======================================
 
-const genericOutput_5 = genericIdentity({
+const genericOutput_5 = identity({
   keyOne: "property",
   keyTwo: 2,
 });
+
+console.log(genericOutput_5);
+
+// =======================================
+
+export default undefined;

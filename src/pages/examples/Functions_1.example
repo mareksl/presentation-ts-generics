@@ -27,3 +27,9 @@ function identity_3(input: unknown): unknown {
 
 const output_5 = identity_3(inputString);
 const output_6 = identity_3(inputNumber);
+
+console.log(output_1);
+
+// =======================================
+
+export default undefined;

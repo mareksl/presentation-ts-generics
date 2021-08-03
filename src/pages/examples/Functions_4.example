@@ -7,7 +7,16 @@ function addMetaDataGeneric<T>(object: T): Metadata & T {
   return { ...object, createdAt: "2021-08-01", createdBy: "Jane Doe" };
 }
 
+const post = {
+  title: "My First Post",
+  content: "Lorem ipsum dolor sit amet!",
+  random: "data",
+};
+
 const postWithMetadataGeneric = addMetaDataGeneric(post);
 
-postWithMetadataGeneric.content;
-postWithMetadataGeneric.createdAt;
+console.log(postWithMetadataGeneric);
+
+// =======================================
+
+export default undefined;

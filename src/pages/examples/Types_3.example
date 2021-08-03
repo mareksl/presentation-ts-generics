@@ -1,0 +1,24 @@
+interface Dictionary {
+  polish: string;
+  english: string;
+  german: string;
+}
+
+const dictionary: Dictionary = {
+  polish: "cześć",
+  english: "hello",
+  german: "grüß Gott",
+};
+
+function getValue(dictionary: Dictionary, language: string) {
+  return dictionary[language];
+}
+// would raise TS error in strict mode
+
+const arabicHello = getValue(dictionary, "arabic");
+
+console.log(arabicHello);
+
+// =======================================
+
+export default undefined;

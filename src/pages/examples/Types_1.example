@@ -1,0 +1,93 @@
+interface ValueGetter<T> {
+  value: T;
+  getValue: () => T;
+  add: (num: number) => T;
+}
+
+const myNumber: ValueGetter<number> = {
+  value: 4,
+  getValue() {
+    return this.value;
+  },
+  add(num: number) {
+    return this.value + num;
+  },
+};
+
+const addedNumber = myNumber.add(2);
+
+console.log(addedNumber);
+console.log(myNumber.getValue());
+
+// =======================================
+
+type CoordinatesFn<T> = (x: T, y: T) => { x: T; y: T };
+
+const createNumCoordinares: CoordinatesFn<number> = (x1, y1) => ({
+  x: x1,
+  y: y1,
+});
+
+const numberCoordinates = createNumCoordinares(69, 420);
+// console.log(numberCoordinates);
+
+const wrongCoordinates = createNumCoordinares("42", 7);
+
+// =======================================
+
+const createStringCoordinates: CoordinatesFn<string> = (x2, y2) => ({
+  x: x2,
+  y: y2,
+});
+
+const stringCoordinates = createStringCoordinates("32.9343° N", "97.0781° W");
+// console.log(stringResult);
+
+// =======================================
+
+interface GenericCoordinatesFn {
+  <T>(x: T, y: T): { x: T; y: T };
+}
+
+const createGenericCoordinates: GenericCoordinatesFn = (x3, y3) => ({
+  x: x3,
+  y: y3,
+});
+
+const genericCoordinates = createGenericCoordinates(123, 123);
+const genericCoordinates2 = createGenericCoordinates("123", "123");
+
+const genericCoordinatesWrong = createGenericCoordinates(123, "123");
+
+// =======================================
+
+const genericCoordinatesWeird = createGenericCoordinates(
+  { random: "prop" },
+  { other: 42 }
+);
+
+interface Coordinates<T> {
+  x: T;
+  y: T;
+}
+
+interface BetterGenericCoordinatesFn {
+  <C extends string | number>(x: C, y: C): Coordinates<C>;
+}
+
+const createBetterGenericCoordinates: BetterGenericCoordinatesFn = (x, y) => ({
+  x,
+  y,
+});
+
+const betterCoordinates = createBetterGenericCoordinates(1, 2);
+const betterCoordinates1 = createBetterGenericCoordinates("1", "2");
+
+const betterCoordinates2 = createBetterGenericCoordinates(
+  { some: "object" },
+  { other: "object" }
+);
+
+// =======================================
+
+export default undefined;

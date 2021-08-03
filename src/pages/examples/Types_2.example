@@ -1,0 +1,62 @@
+interface StringMetadata {
+  length: number;
+  language: "en" | "pl";
+}
+
+interface NumberMetadata {
+  positive: boolean;
+  absoluteValue: number;
+}
+
+interface ValueWithMetadata<T extends string | number> {
+  value: T;
+  metadata: T extends string ? StringMetadata : NumberMetadata;
+}
+
+const word: ValueWithMetadata<string> = {
+  value: "Hello",
+  metadata: { length: 5, language: "en" },
+};
+
+const digit: ValueWithMetadata<number> = {
+  value: -32,
+  metadata: { positive: false, absoluteValue: 32 },
+};
+
+// =======================================
+
+type Metadata<T extends string | number> = T extends string
+  ? StringMetadata
+  : NumberMetadata;
+
+interface IncludeMetadata {
+  <T extends string | number>(
+    value: T,
+    metadata: Metadata<T>
+  ): ValueWithMetadata<T>;
+}
+
+const includeMetadata: IncludeMetadata = (value, metadata) => ({
+  value,
+  metadata,
+});
+
+const stringWithMetadata = includeMetadata("Siema!", {
+  language: "pl",
+  length: 6,
+});
+console.log(stringWithMetadata.metadata);
+
+const numberWithMetadata = includeMetadata(-3, {
+  absoluteValue: 3,
+  positive: false,
+});
+
+const numberWithMetadataWrong = includeMetadata(3, {
+  language: "pl",
+  length: 6,
+});
+
+// =======================================
+
+export default undefined;

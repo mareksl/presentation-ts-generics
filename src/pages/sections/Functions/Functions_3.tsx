@@ -1,18 +1,16 @@
 import React from "react";
 import Editor from "../../../components/Editor";
 import Section from "../../../components/Section";
-
-import example5 from "../../examples/Functions_5.example";
-import example6 from "../../examples/Functions_6.example";
+import files from "../../examples";
 
 const Functions3: React.FC = () => {
   return (
     <>
       <Section>
-        <Editor value={example5} />
+        <Editor file={files.example5} hasPreview />
       </Section>
       <Section>
-        <Editor value={example6} />
+        <Editor file={files.example6} hasPreview />
       </Section>
     </>
   );

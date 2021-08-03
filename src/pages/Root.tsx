@@ -12,6 +12,9 @@ import Functions2 from "./sections/Functions/Functions_2";
 import Functions3 from "./sections/Functions/Functions_3";
 import Functions4 from "./sections/Functions/Functions_4";
 import Types from "./sections/Types/Types";
+import Types2 from "./sections/Types/Types_2";
+import React1 from "./sections/React/React_1";
+import Types3 from "./sections/Types/Types_3";
 
 const Root: React.FC = () => {
   useEffect(() => {
@@ -29,6 +32,9 @@ const Root: React.FC = () => {
     Functions3,
     Functions4,
     Types,
+    Types2,
+    Types3,
+    React1,
   ];
 
   return (
