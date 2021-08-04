@@ -1,7 +1,7 @@
 interface ValueGetter<T> {
   value: T;
   getValue: () => T;
-  add: (num: number) => T;
+  add: (valueToAdd: T) => T;
 }
 
 const myNumber: ValueGetter<number> = {
@@ -9,8 +9,8 @@ const myNumber: ValueGetter<number> = {
   getValue() {
     return this.value;
   },
-  add(num: number) {
-    return this.value + num;
+  add(valueToAdd) {
+    return this.value + valueToAdd;
   },
 };
 

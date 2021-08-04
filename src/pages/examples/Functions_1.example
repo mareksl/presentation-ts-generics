@@ -15,7 +15,7 @@ const output_2 = identity_1(inputNumber);
 
 // =======================================
 
-function identity_2(input: any): any {
+function identity_2(input: sting | number): string | number {
   return input;
 }
 
@@ -24,12 +24,21 @@ const output_4 = identity_2(inputNumber);
 
 // =======================================
 
-function identity_3(input: unknown): unknown {
+function identity_3(input: any): any {
   return input;
 }
 
 const output_5 = identity_3(inputString);
 const output_6 = identity_3(inputNumber);
+
+// =======================================
+
+function identity_4(input: unknown): unknown {
+  return input;
+}
+
+const output_7 = identity_4(inputString);
+const output_8 = identity_4(inputNumber);
 
 // =======================================
 
