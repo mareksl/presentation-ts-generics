@@ -1,0 +1,53 @@
+import React, { useState } from "react";
+
+interface GenericProps<T extends string | number> {
+  value: T;
+  options: T[];
+  setValue: (value: T) => void;
+}
+
+const GenericSelect = <T extends string | number>({
+  value,
+  setValue,
+  options,
+}: GenericProps<T>): React.ReactElement => {
+  const handleValueChange = (e: React.FormEvent<HTMLSelectElement>) => {
+    const { selectedIndex } = e.currentTarget;
+    setValue(options[selectedIndex]);
+  };
+
+  return (
+    <select value={value} onChange={handleValueChange}>
+      {options.map((opt) => (
+        <option value={opt}>{opt}</option>
+      ))}
+    </select>
+  );
+};
+
+const GenericSelectWrapper: React.FC = () => {
+  const [num, setNum] = useState<number>(5);
+  const [str, setStr] = useState<string>("orange");
+
+  return (
+    <div>
+      <GenericSelect
+        value={num}
+        setValue={(value) => setNum(value)}
+        options={[1, 2, 3, 4, 5]}
+      />
+      <span>{num}</span>
+
+      <GenericSelect
+        value={str}
+        setValue={(value) => setStr(value)}
+        options={["orange", "green", "red"]}
+      />
+      <span>{str}</span>
+    </div>
+  );
+};
+
+// =======================================
+
+export default undefined;

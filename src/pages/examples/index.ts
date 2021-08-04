@@ -12,6 +12,7 @@ import types4 from "./Types_4.example";
 import types5 from "./Types_5.example";
 import types6 from "./Types_6.example";
 import react1 from "./React_1.example";
+import react2 from "./React_2.example";
 
 export interface File {
   value: string;
@@ -33,7 +34,8 @@ const files = {
   types4: { value: types4, name: "types4.ts" },
   types5: { value: types5, name: "types5.ts" },
   types6: { value: types6, name: "types6.ts" },
-  react1: { value: react1, name: "react1.ts" },
+  react1: { value: react1, name: "react1.tsx" },
+  react2: { value: react2, name: "react2.tsx" },
 };
 
 export default files;

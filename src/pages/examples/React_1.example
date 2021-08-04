@@ -1,6 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Select = () => {};
+interface Props {
+  value: string;
+  options: string[];
+  setValue: (value: string) => void;
+}
+
+const Select: React.FC<Props> = ({ value, setValue, options }) => {
+  return (
+    <select value={value} onChange={(e) => setValue(e.target.value)}>
+      {options.map((opt) => (
+        <option value={opt}>{opt}</option>
+      ))}
+    </select>
+  );
+};
+
+const StringSelectWrapper: React.FC = () => {
+  const [value, setValue] = useState<string>("orange");
+
+  return (
+    <div>
+      <Select
+        value={value}
+        setValue={setValue}
+        options={["orange", "green", "red"]}
+      />
+      <span>{value}</span>
+    </div>
+  );
+};
+
+// =======================================
+
+const WrongSelectWrapper: React.FC = () => {
+  const [value, setValue] = useState<number>(5);
+
+  return (
+    <div>
+      <Select value={value} setValue={setValue} options={[1, 2, 3, 4, 5]} />
+      <span>{value}</span>
+    </div>
+  );
+};
 
 // =======================================
 

@@ -4,6 +4,7 @@ import classes from "./Editor.module.scss";
 import theme from "./theme.json";
 import { File } from "../pages/examples";
 import { languages } from "monaco-editor";
+const files = require.context("!!raw-loader!@types/react", true, /\.d.ts$/);
 
 interface Props {
   file: File;
@@ -70,7 +71,17 @@ const Editor: React.FC<Props> = ({ file, hasPreview }) => {
       monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
         module: languages.typescript.ModuleKind.CommonJS,
         target: languages.typescript.ScriptTarget.ES2017,
-        jsx: languages.typescript.JsxEmit.ReactJSX,
+        jsx: languages.typescript.JsxEmit.React,
+        esModuleInterop: true,
+        jsxFactory: "React.createElement",
+        reactNamespace: "React",
+      });
+
+      files.keys().forEach((key) => {
+        monaco.languages.typescript.typescriptDefaults.addExtraLib(
+          files(key).default,
+          "file:///node_modules/@types/react/" + key.substr(2)
+        );
       });
       setThemeLoaded(true);
     }
