@@ -8,6 +8,9 @@ function identity_1(input: string): string {
 }
 
 const output_1 = identity_1(inputString);
+
+console.log(output_1);
+
 const output_2 = identity_1(inputNumber);
 
 // =======================================
@@ -27,8 +30,6 @@ function identity_3(input: unknown): unknown {
 
 const output_5 = identity_3(inputString);
 const output_6 = identity_3(inputNumber);
-
-console.log(output_1);
 
 // =======================================
 
