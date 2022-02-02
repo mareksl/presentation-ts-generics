@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import MonacoEditor, { useMonaco } from "@monaco-editor/react";
 import classes from "./Editor.module.scss";
 import theme from "./theme.json";
@@ -14,10 +14,8 @@ interface Props {
 const Editor: React.FC<Props> = ({ file, hasPreview }) => {
   const monaco = useMonaco();
 
-  const iframeRef = useRef<HTMLIFrameElement>(null);
   const [themeLoaded, setThemeLoaded] = useState(false);
-
-  // const [iframeCode, setIframeCode] = useState("");
+  const [consoleOutput, setConsoleOutput] = useState<string[]>([]);
 
   const getTranspiledCode = async () => {
     if (monaco) {
@@ -32,35 +30,28 @@ const Editor: React.FC<Props> = ({ file, hasPreview }) => {
     }
   };
 
-  //   const iframeContent = `
-  // <!DOCTYPE html>
-  // <html lang="en">
-  // <head>
-  //     <meta charset="UTF-8">
-  //     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  //     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  //     <title>Document</title>
-  // </head>
-  // <body>
-  // </body>
-  // <script>var exports = {"__esModule": true};</script>
-  // <script>${iframeCode}</script>
-  // </html>
-  // `;
-
   const onEditorChange = async () => {
     if (monaco) {
       const output = await getTranspiledCode();
       if (output) {
-        // setIframeCode(output.outputFiles[0].text);
         try {
+          const logOld = console.log;
+          console.log = (msg) => {
+            setConsoleOutput([
+              ...consoleOutput,
+              JSON.stringify(msg, null, "\t"),
+            ]);
+            logOld(msg);
+          };
+
           const code = output.outputFiles[0].text;
           // eslint-disable-next-line no-new-func
           new Function('var exports = {"__esModule": true};' + code)();
+
+          console.log = logOld;
         } catch (e) {
           console.error(e);
         }
-        iframeRef.current?.contentWindow?.location.reload();
       }
     }
   };
@@ -111,12 +102,15 @@ const Editor: React.FC<Props> = ({ file, hasPreview }) => {
               Run
             </button>
           </div>
-          <iframe
-            title="iframe"
-            className={classes.iframe}
-            srcDoc={""}
-            ref={iframeRef}
-          ></iframe>
+          <pre className={classes.outputWrapper}>
+            <code className={classes.outputContent}>
+              {consoleOutput
+                .flatMap((l) => l.split("\n"))
+                .map((line) => (
+                  <span className={classes.outputLine}>{line}</span>
+                ))}
+            </code>
+          </pre>
         </div>
       )}
     </div>

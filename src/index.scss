@@ -9,3 +9,17 @@ html {
 body {
   height: 100%;
 }
+
+*::-webkit-scrollbar {
+  width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #181818;
+  border-radius: 8px;
+}
