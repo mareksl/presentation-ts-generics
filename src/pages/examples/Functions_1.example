@@ -15,7 +15,7 @@ const output_2 = identity_1(inputNumber);
 
 // =======================================
 
-function identity_2(input: sting | number): string | number {
+function identity_2(input: string | number): string | number {
   return input;
 }
 
