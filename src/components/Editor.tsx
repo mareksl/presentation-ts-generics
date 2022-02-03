@@ -56,6 +56,10 @@ const Editor: React.FC<Props> = ({ file, hasPreview }) => {
     }
   };
 
+  const onClear = () => {
+    setConsoleOutput([]);
+  };
+
   useEffect(() => {
     if (monaco) {
       monaco.editor.defineTheme("onedark", theme as any);
@@ -97,9 +101,12 @@ const Editor: React.FC<Props> = ({ file, hasPreview }) => {
       )}
       {hasPreview && themeLoaded && (
         <div className={classes.output}>
-          <div>
+          <div className={classes.outputButtons}>
             <button className={classes.run} onClick={onEditorChange}>
               Run
+            </button>
+            <button className={classes.run} onClick={onClear}>
+              Clear
             </button>
           </div>
           <pre className={classes.outputWrapper}>
