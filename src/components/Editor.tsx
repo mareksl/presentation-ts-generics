@@ -36,12 +36,12 @@ const Editor: React.FC<Props> = ({ file, hasPreview }) => {
       if (output) {
         try {
           const logOld = console.log;
-          console.log = (msg) => {
+          console.log = (...el) => {
             setConsoleOutput([
               ...consoleOutput,
-              JSON.stringify(msg, null, "\t"),
+              ...el.map((msg) => JSON.stringify(msg, null, "\t")),
             ]);
-            logOld(msg);
+            logOld(...el);
           };
 
           const code = output.outputFiles[0].text;
